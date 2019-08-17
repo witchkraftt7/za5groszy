@@ -16,7 +16,7 @@ public class Market {
         if (repository.getUserBids(userId) <= 0) {
             throw new InsufficientAmountOfBidsException();
         }
-
+    // TODO:: add logic responsible for checking if item is stil available to buy
         return repository.upBid(userId, itemId);
     }
 }

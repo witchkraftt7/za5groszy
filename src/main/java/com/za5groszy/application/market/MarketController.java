@@ -33,6 +33,7 @@ public class MarketController extends UserContextController {
     @MessageMapping("/bid")
     public void upBid(@Payload Message $message, Principal user) throws Exception {
         try {
+            // TODO: use real user id and item id
             Item item = service.upBid(
                     new UpBid(
                             new ItemId(44),
@@ -50,6 +51,7 @@ public class MarketController extends UserContextController {
                     presenter.present()
             );
         } catch (InsufficientAmountOfBidsException e) {
+            // todo add custom WebSocketErrorResponse class
             template.convertAndSendToUser(
                     user.getName(),
                     "",
