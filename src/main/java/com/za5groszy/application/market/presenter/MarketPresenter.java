@@ -1,33 +1,31 @@
 package com.za5groszy.application.market.presenter;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.za5groszy.application.websocket.WebSocketMessagePresenter;
 import com.za5groszy.foundation.market.sharedkernel.item.Item;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MarketPresenter {
+public class MarketPresenter implements WebSocketMessagePresenter {
     private static final String ITEM_ID = "itemId";
     private static final String WINNING_BID = "winningBid";
     private static final String TIME_TILL_END = "timeTillEnd";
 
     private List<Item> list;
-    private ObjectMapper mapper;
 
-    public MarketPresenter(List<Item> list, ObjectMapper mapper) {
+    public MarketPresenter(List<Item> list) {
         this.list = list;
-        this.mapper = mapper;
     }
 
-    public MarketPresenter(Item item, ObjectMapper mapper) {
+    public MarketPresenter(Item item) {
         this.list = new ArrayList<>();
         this.list.add(item);
-        this.mapper = mapper;
     }
 
-    public String present() throws JsonProcessingException {
+    @Override
+    public List<JSONObject> present() {
         List<JSONObject> response = new ArrayList<>();
 
         this.list.parallelStream().forEach(item -> {
@@ -36,7 +34,7 @@ public class MarketPresenter {
             );
         });
 
-        return mapper.writeValueAsString(response);
+        return response;
     }
 
     private JSONObject buildJsonObject(Item item) {

@@ -1,6 +1,5 @@
 package com.za5groszy.application.market;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.za5groszy.application.configs.websocket.WebSocketConfig;
 
 import com.za5groszy.application.market.presenter.MarketPresenter;
@@ -21,10 +20,9 @@ public class MarketMessageScheduler {
     private MarketReadModel readModel;
 
     @Scheduled(fixedDelay = MESSAGE_PUSH_DELAY_MS)
-    public void pushMarketState() throws Exception {
+    public void pushMarketState() {
         MarketPresenter presenter = new MarketPresenter(
-                readModel.getCurrentState(),
-                new ObjectMapper()
+                readModel.getCurrentState()
         );
 
         template.convertAndSend(

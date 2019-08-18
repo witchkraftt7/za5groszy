@@ -8,4 +8,6 @@ public interface MarketRepository {
     public Item upBid(UserId userId, ItemId itemId);
 
     public int getUserBids(UserId userId);
+
+    public boolean isItemAuctionInProgress(ItemId itemId);
 }

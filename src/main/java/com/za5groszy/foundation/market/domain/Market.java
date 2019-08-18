@@ -1,6 +1,7 @@
 package com.za5groszy.foundation.market.domain;
 
 import com.za5groszy.foundation.market.domain.exception.InsufficientAmountOfBidsException;
+import com.za5groszy.foundation.market.domain.exception.ItemAuctionFinishedException;
 import com.za5groszy.foundation.market.sharedkernel.item.Item;
 import com.za5groszy.foundation.market.sharedkernel.item.ItemId;
 import com.za5groszy.foundation.sharedkernel.UserId;
@@ -12,11 +13,15 @@ public class Market {
     @Autowired
     private MarketRepository repository;
 
-    public Item upBid(UserId userId, ItemId itemId) throws InsufficientAmountOfBidsException {
+    public Item upBid(UserId userId, ItemId itemId) throws InsufficientAmountOfBidsException, ItemAuctionFinishedException {
         if (repository.getUserBids(userId) <= 0) {
-            throw new InsufficientAmountOfBidsException();
+            throw new InsufficientAmountOfBidsException(userId, itemId);
         }
-    // TODO:: add logic responsible for checking if item is stil available to buy
+
+        if (!repository.isItemAuctionInProgress(itemId)) {
+            throw new ItemAuctionFinishedException(userId, itemId);
+        }
+
         return repository.upBid(userId, itemId);
     }
 }
