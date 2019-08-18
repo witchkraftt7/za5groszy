@@ -1,7 +1,8 @@
 package com.za5groszy.foundation.market.domain;
 
-import com.za5groszy.foundation.market.domain.event.UserBadeUp;
 import com.za5groszy.foundation.market.domain.event.MarketEventEmitter;
+import com.za5groszy.foundation.market.domain.event.UserBadeUp;
+import com.za5groszy.foundation.market.domain.event.UserBoughtItem;
 import com.za5groszy.foundation.market.domain.exception.InsufficientAmountOfBidsException;
 import com.za5groszy.foundation.market.domain.exception.ItemAuctionFinishedException;
 import com.za5groszy.foundation.market.sharedkernel.item.ItemId;
@@ -26,10 +27,24 @@ public class Market {
             throw new ItemAuctionFinishedException(userId, itemId);
         }
 
-        return (UserBadeUp) emitter.emit(new UserBadeUp(
-                this,
-                userId,
-                itemId
-        ));
+        return (UserBadeUp) emitter.emit(
+                new UserBadeUp(
+                        userId,
+                        itemId
+                )
+        );
+    }
+
+    public UserBoughtItem buyNow(UserId userId, ItemId itemId) throws ItemAuctionFinishedException {
+        if (!repository.isItemAuctionInProgress(itemId)) {
+            throw new ItemAuctionFinishedException(userId, itemId);
+        }
+
+        return (UserBoughtItem) emitter.emit(
+                new UserBoughtItem(
+                        userId,
+                        itemId
+                )
+        );
     }
 }

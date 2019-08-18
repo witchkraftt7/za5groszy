@@ -4,19 +4,13 @@ import com.za5groszy.foundation.sharedkernel.UserId;
 
 public abstract class AggregateEvent {
     private UserId userId;
-    private Object source;
 
-    public AggregateEvent(Object source, UserId userId) {
-        this.source = source;
+    public AggregateEvent(UserId userId) {
         this.userId = userId;
     }
 
     public UserId getUserId() {
         return userId;
-    }
-
-    public Object getSource() {
-        return source;
     }
 
     public AggregateEvent clone() {

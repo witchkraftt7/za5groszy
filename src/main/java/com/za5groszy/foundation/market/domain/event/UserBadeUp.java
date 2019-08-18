@@ -11,8 +11,8 @@ public class UserBadeUp extends AggregateEvent {
     private ItemId itemId;
     private Duration expirationDate;
 
-    public UserBadeUp(Object source, UserId userId, ItemId itemId) {
-        super(source, userId);
+    public UserBadeUp(UserId userId, ItemId itemId) {
+        super(userId);
         this.itemId = itemId;
     }
 
