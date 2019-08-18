@@ -1,7 +1,7 @@
 package com.za5groszy.foundation.market.infrastructure;
 
 import com.za5groszy.foundation.market.domain.MarketRepository;
-import com.za5groszy.foundation.market.domain.event.ItemBidUp;
+import com.za5groszy.foundation.market.domain.event.UserBadeUp;
 import com.za5groszy.foundation.market.sharedkernel.item.ItemId;
 import com.za5groszy.foundation.sharedkernel.UserId;
 import com.za5groszy.foundation.sharedkernel.event.AggregateEvent;
@@ -18,14 +18,14 @@ public class MarketDbRepository implements MarketRepository, AggregateRepository
 
     @Override
     public AggregateEvent persist(AggregateEvent event) {
-        if (event instanceof ItemBidUp) {
-            return onItemBidUp((ItemBidUp) event);
+        if (event instanceof UserBadeUp) {
+            return onItemBidUp((UserBadeUp) event);
         }
 
         return event;
     }
 
-    private ItemBidUp onItemBidUp(ItemBidUp event) {
+    private UserBadeUp onItemBidUp(UserBadeUp event) {
         // TODO: implement repository methods
         return event.withExpirationDate(Duration.between(Instant.now(), Instant.now()));
     }

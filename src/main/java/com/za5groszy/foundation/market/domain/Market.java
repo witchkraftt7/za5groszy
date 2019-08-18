@@ -1,6 +1,6 @@
 package com.za5groszy.foundation.market.domain;
 
-import com.za5groszy.foundation.market.domain.event.ItemBidUp;
+import com.za5groszy.foundation.market.domain.event.UserBadeUp;
 import com.za5groszy.foundation.market.domain.event.MarketEventEmitter;
 import com.za5groszy.foundation.market.domain.exception.InsufficientAmountOfBidsException;
 import com.za5groszy.foundation.market.domain.exception.ItemAuctionFinishedException;
@@ -17,7 +17,7 @@ public class Market {
     @Autowired
     private MarketEventEmitter emitter;
 
-    public ItemBidUp upBid(UserId userId, ItemId itemId) throws InsufficientAmountOfBidsException, ItemAuctionFinishedException {
+    public UserBadeUp bidUp(UserId userId, ItemId itemId) throws InsufficientAmountOfBidsException, ItemAuctionFinishedException {
         if (repository.getUserBids(userId) <= 0) {
             throw new InsufficientAmountOfBidsException(userId, itemId);
         }
@@ -26,7 +26,7 @@ public class Market {
             throw new ItemAuctionFinishedException(userId, itemId);
         }
 
-        return (ItemBidUp) emitter.emit(new ItemBidUp(
+        return (UserBadeUp) emitter.emit(new UserBadeUp(
                 this,
                 userId,
                 itemId

@@ -1,8 +1,8 @@
 package com.za5groszy.foundation.market.application;
 
-import com.za5groszy.foundation.market.application.command.UpBid;
+import com.za5groszy.foundation.market.application.command.BidUp;
 import com.za5groszy.foundation.market.domain.Market;
-import com.za5groszy.foundation.market.domain.event.ItemBidUp;
+import com.za5groszy.foundation.market.domain.event.UserBadeUp;
 import com.za5groszy.foundation.market.domain.exception.InsufficientAmountOfBidsException;
 import com.za5groszy.foundation.market.domain.exception.ItemAuctionFinishedException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ public class MarketService {
     @Autowired
     private Market market;
 
-    public ItemBidUp upBid(UpBid command) throws InsufficientAmountOfBidsException, ItemAuctionFinishedException {
-        return market.upBid(command.getUserId(), command.getItemId());
+    public UserBadeUp bidUp(BidUp command) throws InsufficientAmountOfBidsException, ItemAuctionFinishedException {
+        return market.bidUp(command.getUserId(), command.getItemId());
     }
 }

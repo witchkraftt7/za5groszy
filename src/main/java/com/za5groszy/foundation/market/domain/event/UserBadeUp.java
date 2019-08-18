@@ -7,11 +7,11 @@ import com.za5groszy.foundation.sharedkernel.event.AggregateEvent;
 
 import java.time.Duration;
 
-public class ItemBidUp extends AggregateEvent {
+public class UserBadeUp extends AggregateEvent {
     private ItemId itemId;
     private Duration expirationDate;
 
-    public ItemBidUp(Object source, UserId userId, ItemId itemId) {
+    public UserBadeUp(Object source, UserId userId, ItemId itemId) {
         super(source, userId);
         this.itemId = itemId;
     }
@@ -20,8 +20,8 @@ public class ItemBidUp extends AggregateEvent {
         return itemId;
     }
 
-    public ItemBidUp withExpirationDate(Duration expirationDate) {
-        ItemBidUp event = (ItemBidUp) this.clone();
+    public UserBadeUp withExpirationDate(Duration expirationDate) {
+        UserBadeUp event = (UserBadeUp) this.clone();
         event.expirationDate = expirationDate;
 
         return event;

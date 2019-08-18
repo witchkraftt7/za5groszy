@@ -5,8 +5,8 @@ import com.za5groszy.application.configs.websocket.WebSocketConfig;
 import com.za5groszy.application.market.presenter.MarketErrorMessagePresenter;
 import com.za5groszy.application.market.presenter.MarketGridPresenter;
 import com.za5groszy.foundation.market.application.MarketService;
-import com.za5groszy.foundation.market.application.command.UpBid;
-import com.za5groszy.foundation.market.domain.event.ItemBidUp;
+import com.za5groszy.foundation.market.application.command.BidUp;
+import com.za5groszy.foundation.market.domain.event.UserBadeUp;
 import com.za5groszy.foundation.market.domain.exception.InsufficientAmountOfBidsException;
 import com.za5groszy.foundation.market.domain.exception.ItemAuctionFinishedException;
 import com.za5groszy.foundation.market.sharedkernel.item.ItemId;
@@ -27,8 +27,8 @@ public class MarketGridController extends UserContextController {
     public void upBid(@Payload Message $message, Principal user) {
         try {
             // TODO: use real user id and item id
-            ItemBidUp item = service.upBid(
-                    new UpBid(
+            UserBadeUp item = service.bidUp(
+                    new BidUp(
                             getUserDetails().getUserId(),
                             new ItemId(44)
                     )
