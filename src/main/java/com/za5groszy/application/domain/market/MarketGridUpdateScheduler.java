@@ -1,4 +1,4 @@
-package com.za5groszy.application.market;
+package com.za5groszy.application.domain.market;
 
 import com.za5groszy.application.configs.websocket.WebSocketConfig;
 import com.za5groszy.application.market.presenter.MarketGridPresenter;

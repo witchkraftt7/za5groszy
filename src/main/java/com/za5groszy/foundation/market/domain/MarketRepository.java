@@ -5,7 +5,7 @@ import com.za5groszy.foundation.sharedkernel.UserId;
 import com.za5groszy.foundation.sharedkernel.infrastructure.AggregateRepository;
 
 public interface MarketRepository extends AggregateRepository {
-    public int getUserBids(UserId userId);
+    int getUserBids(UserId userId);
 
-    public boolean isItemAuctionInProgress(ItemId itemId);
+    boolean isItemAuctionInProgress(ItemId itemId);
 }
