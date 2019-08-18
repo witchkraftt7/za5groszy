@@ -1,70 +1,72 @@
 package com.za5groszy.foundation.models;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "users")
-public class User {
-    @Id @GeneratedValue
-    @Column(name = "id")
-    private int id;
+@Table(name = "user")
+public class User implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    @Column(name = "email")
-    private String email;
+    @NotEmpty
+    @Column(nullable = false, unique = true)
+    private String username;
 
-    @Column(name = "password")
+    @NotEmpty
     private String password;
 
-    @CreationTimestamp
-    @Temporal(TemporalType.DATE)
-    @Column(name = "created_on")
-    private Date createdOn;
+    private Date dateCreated;
 
-    @UpdateTimestamp
-    @Temporal(TemporalType.DATE)
-    @Column(name = "updated_on")
-    private Date updatedOn;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_authority",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "authority_id")})
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private UserBidBalance userBidBalance;
+    private Set<Authority> authorities = new HashSet<>();
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public int getId() {
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public void setAuthorities(Set<Authority> authorities) {
+        this.authorities = authorities;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public Date getCreatedOn() {
-        return createdOn;
+    public Date getDateCreated() {
+        return dateCreated;
     }
 
-    public Date getUpdatedOn() {
-        return updatedOn;
-    }
-
-    public UserBidBalance getUserBidBalance() {
-        return userBidBalance;
+    public Set<Authority> getAuthorities() {
+        return authorities;
     }
 }

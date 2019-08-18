@@ -8,18 +8,18 @@ import org.json.simple.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MarketPresenter implements WebSocketMessagePresenter {
+public class MarketGridPresenter implements WebSocketMessagePresenter {
     private static final String ITEM_ID = "itemId";
     private static final String WINNING_BID = "winningBid";
     private static final String TIME_TILL_END = "timeTillEnd";
 
     private List<Item> list;
 
-    public MarketPresenter(List<Item> list) {
+    public MarketGridPresenter(List<Item> list) {
         this.list = list;
     }
 
-    public MarketPresenter(Item item) {
+    public MarketGridPresenter(Item item) {
         this.list = new ArrayList<>();
         this.list.add(item);
     }

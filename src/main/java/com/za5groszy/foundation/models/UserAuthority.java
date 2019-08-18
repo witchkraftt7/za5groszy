@@ -1,0 +1,41 @@
+package com.za5groszy.foundation.models;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Table(name = "user_authority")
+public class UserAuthority {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    private Integer authorityId;
+
+    private Integer userId;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Integer getAuthorityId() {
+        return authorityId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setAuthorityId(Integer authorityId) {
+        this.authorityId = authorityId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+}

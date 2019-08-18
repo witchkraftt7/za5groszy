@@ -1,15 +1,8 @@
 package com.za5groszy.foundation.sharedkernel.infrastructure;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.za5groszy.foundation.sharedkernel.event.AggregateEvent;
 
-public class AggregateRepository {
-    @Autowired
-    SessionFactory sessionFactory;
+public interface AggregateRepository {
 
-    protected Session getCurrentSession() {
-        return sessionFactory.getCurrentSession();
-    }
-
+    public AggregateEvent persist(AggregateEvent event);
 }
