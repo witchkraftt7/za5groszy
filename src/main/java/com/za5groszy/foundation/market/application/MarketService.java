@@ -5,8 +5,6 @@ import com.za5groszy.foundation.market.domain.Market;
 import com.za5groszy.foundation.market.domain.event.ItemBidUp;
 import com.za5groszy.foundation.market.domain.exception.InsufficientAmountOfBidsException;
 import com.za5groszy.foundation.market.domain.exception.ItemAuctionFinishedException;
-import com.za5groszy.foundation.market.sharedkernel.item.Item;
-import com.za5groszy.foundation.sharedkernel.event.AggregateEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

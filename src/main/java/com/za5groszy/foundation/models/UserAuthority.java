@@ -19,20 +19,20 @@ public class UserAuthority {
         return id;
     }
 
-    public Integer getAuthorityId() {
-        return authorityId;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
     public void setId(Integer id) {
         this.id = id;
     }
 
+    public Integer getAuthorityId() {
+        return authorityId;
+    }
+
     public void setAuthorityId(Integer authorityId) {
         this.authorityId = authorityId;
+    }
+
+    public Integer getUserId() {
+        return userId;
     }
 
     public void setUserId(Integer userId) {

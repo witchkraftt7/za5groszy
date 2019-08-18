@@ -1,7 +1,6 @@
 package com.za5groszy.application.market;
 
 import com.za5groszy.application.configs.websocket.WebSocketConfig;
-
 import com.za5groszy.application.market.presenter.MarketGridPresenter;
 import com.za5groszy.foundation.market.readmodel.MarketReadModel;
 import org.springframework.beans.factory.annotation.Autowired;

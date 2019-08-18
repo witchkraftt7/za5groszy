@@ -1,4 +1,4 @@
-package com.za5groszy.application.security.user;
+package com.za5groszy.application.domain.security.user;
 
 import com.za5groszy.foundation.models.Authority;
 import com.za5groszy.foundation.sharedkernel.UserId;

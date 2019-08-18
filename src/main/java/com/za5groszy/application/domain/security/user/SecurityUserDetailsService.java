@@ -1,6 +1,5 @@
-package com.za5groszy.application.security.user;
+package com.za5groszy.application.domain.security.user;
 
-import com.za5groszy.application.security.user.SecurityUserDetails;
 import com.za5groszy.foundation.user.domain.User;
 import com.za5groszy.foundation.user.readmodel.UserReadModel;
 import org.springframework.beans.factory.annotation.Autowired;

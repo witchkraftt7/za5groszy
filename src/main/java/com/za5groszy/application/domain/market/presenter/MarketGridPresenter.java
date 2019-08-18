@@ -1,6 +1,5 @@
 package com.za5groszy.application.market.presenter;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.za5groszy.application.websocket.WebSocketMessagePresenter;
 import com.za5groszy.foundation.market.sharedkernel.item.Item;
 import org.json.simple.JSONObject;

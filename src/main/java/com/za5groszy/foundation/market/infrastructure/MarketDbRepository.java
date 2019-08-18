@@ -1,8 +1,8 @@
 package com.za5groszy.foundation.market.infrastructure;
 
+import com.za5groszy.foundation.market.domain.MarketRepository;
 import com.za5groszy.foundation.market.domain.event.ItemBidUp;
 import com.za5groszy.foundation.market.sharedkernel.item.ItemId;
-import com.za5groszy.foundation.market.domain.MarketRepository;
 import com.za5groszy.foundation.sharedkernel.UserId;
 import com.za5groszy.foundation.sharedkernel.event.AggregateEvent;
 import com.za5groszy.foundation.sharedkernel.infrastructure.AggregateRepository;
@@ -14,7 +14,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 @Repository
-public class MarketDbRepository implements MarketRepository, AggregateRepository  {
+public class MarketDbRepository implements MarketRepository, AggregateRepository {
 
     @Override
     public AggregateEvent persist(AggregateEvent event) {
@@ -43,8 +43,7 @@ public class MarketDbRepository implements MarketRepository, AggregateRepository
         return 5;
     }
 
-    public boolean isItemAuctionInProgress(ItemId itemId)
-    {
+    public boolean isItemAuctionInProgress(ItemId itemId) {
         return true;
     }
 }

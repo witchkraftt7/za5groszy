@@ -1,7 +1,7 @@
 package com.za5groszy.application;
 
 import com.za5groszy.application.configs.websocket.WebSocketConfig;
-import com.za5groszy.application.security.user.SecurityUserDetails;
+import com.za5groszy.application.domain.security.user.SecurityUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,6 +18,6 @@ public class UserContextController {
     }
 
     protected SecurityUserDetails getUserDetails() {
-        return (SecurityUserDetails)(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        return (SecurityUserDetails) (SecurityContextHolder.getContext().getAuthentication().getPrincipal());
     }
 }

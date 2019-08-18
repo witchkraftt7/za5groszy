@@ -26,20 +26,20 @@ public class User {
         return userId;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public Set<Authority> getAuthorities() {
-        return authorities;
-    }
-
     public void setUserId(UserId userId) {
         this.userId = userId;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Set<Authority> getAuthorities() {
+        return authorities;
     }
 
     public void setAuthorities(Set<Authority> authorities) {

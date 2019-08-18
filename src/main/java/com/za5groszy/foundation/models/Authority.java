@@ -23,12 +23,12 @@ public class Authority {
         return id;
     }
 
-    public AuthorityType getName() {
-        return name;
-    }
-
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public AuthorityType getName() {
+        return name;
     }
 
     public void setName(AuthorityType name) {

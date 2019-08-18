@@ -16,7 +16,7 @@ public class UserDbReadModelRepository implements UserReadModelRepository {
     public User getUserByUsername(String username) {
         Query<com.za5groszy.foundation.models.User> query
                 = sessionFactory.getCurrentSession().createQuery(
-                        "FROM User u where u.username = :username",
+                "FROM User u where u.username = :username",
                 com.za5groszy.foundation.models.User.class
         );
 
