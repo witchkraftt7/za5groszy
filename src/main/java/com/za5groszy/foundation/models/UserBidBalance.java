@@ -23,12 +23,20 @@ public class UserBidBalance {
         return user;
     }
 
-    public void setBidBalance(int bids) {
-        this.bidBalance = bids;
+    public void setBidBalance(int bidBalance) {
+        this.bidBalance = bidBalance;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }
 
