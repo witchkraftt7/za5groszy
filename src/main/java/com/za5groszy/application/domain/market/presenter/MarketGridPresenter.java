@@ -1,7 +1,8 @@
-package com.za5groszy.application.market.presenter;
+package com.za5groszy.application.domain.market.presenter;
 
+import com.za5groszy.application.ApplicationEncoderService;
 import com.za5groszy.application.websocket.WebSocketMessagePresenter;
-import com.za5groszy.foundation.market.sharedkernel.item.Item;
+import com.za5groszy.foundation.market.readmodel.Auction;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
@@ -9,25 +10,28 @@ import java.util.List;
 
 public class MarketGridPresenter implements WebSocketMessagePresenter {
     private static final String ITEM_ID = "itemId";
-    private static final String WINNING_BID = "winningBid";
+    private static final String WINNING_USER = "winningUser";
     private static final String TIME_TILL_END = "timeTillEnd";
 
-    private List<Item> list;
+    private List<Auction> list;
+    private ApplicationEncoderService encoder;
 
-    public MarketGridPresenter(List<Item> list) {
+    public MarketGridPresenter(List<Auction> list, ApplicationEncoderService encoder) {
         this.list = list;
+        this.encoder = encoder;
     }
 
-    public MarketGridPresenter(Item item) {
+    public MarketGridPresenter(Auction item, ApplicationEncoderService encoder) {
         this.list = new ArrayList<>();
         this.list.add(item);
+        this.encoder = encoder;
     }
 
     @Override
     public List<JSONObject> present() {
         List<JSONObject> response = new ArrayList<>();
 
-        this.list.parallelStream().forEach(item -> {
+        this.list.forEach(item -> {
             response.add(
                     buildJsonObject(item)
             );
@@ -36,10 +40,10 @@ public class MarketGridPresenter implements WebSocketMessagePresenter {
         return response;
     }
 
-    private JSONObject buildJsonObject(Item item) {
+    private JSONObject buildJsonObject(Auction item) {
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put(ITEM_ID, item.getItemId());
-        jsonObject.put(WINNING_BID, item.getWinningUserId());
+        jsonObject.put(ITEM_ID, encoder.encode(item.getItemId().getId()));
+        jsonObject.put(WINNING_USER, encoder.encode(item.getWinningUserId().getId()));
         jsonObject.put(TIME_TILL_END, item.getTimeUntilEnd().getSeconds());
 
         return jsonObject;

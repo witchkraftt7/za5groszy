@@ -12,6 +12,9 @@ public class UserContextController {
     @Autowired
     protected SimpMessagingTemplate template;
 
+    @Autowired
+    protected ApplicationEncoderService encoder;
+
     @PostConstruct
     private void init() {
         template.setUserDestinationPrefix(WebSocketConfig.USER_TOPIC_PATH);

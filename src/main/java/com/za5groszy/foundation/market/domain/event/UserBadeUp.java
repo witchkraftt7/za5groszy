@@ -1,6 +1,6 @@
 package com.za5groszy.foundation.market.domain.event;
 
-import com.za5groszy.foundation.market.sharedkernel.item.Item;
+import com.za5groszy.foundation.market.readmodel.Auction;
 import com.za5groszy.foundation.market.sharedkernel.item.ItemId;
 import com.za5groszy.foundation.sharedkernel.UserId;
 import com.za5groszy.foundation.sharedkernel.event.AggregateEvent;
@@ -27,9 +27,9 @@ public class UserBadeUp extends AggregateEvent {
         return event;
     }
 
-    public Item getItem() {
+    public Auction getItem() {
 
-        return new Item(
+        return new Auction(
                 getUserId(),
                 getItemId(),
                 this.expirationDate

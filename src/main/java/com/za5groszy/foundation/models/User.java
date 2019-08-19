@@ -21,7 +21,10 @@ public class User implements Serializable {
     @NotEmpty
     private String password;
 
-    private Date dateCreated;
+    @OneToOne
+    private UserBidBalance bidBalance;
+
+    private Date createdAt;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_authority",
@@ -54,12 +57,12 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Date getDateCreated() {
-        return dateCreated;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
+    public void setCreatedAt(Date dateCreated) {
+        this.createdAt = dateCreated;
     }
 
     public Set<Authority> getAuthorities() {
@@ -69,4 +72,13 @@ public class User implements Serializable {
     public void setAuthorities(Set<Authority> authorities) {
         this.authorities = authorities;
     }
+
+    public void setBidBalance(UserBidBalance bidBalance) {
+        this.bidBalance = bidBalance;
+    }
+
+    public UserBidBalance getBidBalance() {
+        return bidBalance;
+    }
 }
+
