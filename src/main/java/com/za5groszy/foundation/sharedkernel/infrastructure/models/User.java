@@ -1,4 +1,4 @@
-package com.za5groszy.foundation.models;
+package com.za5groszy.foundation.sharedkernel.infrastructure.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -16,7 +16,7 @@ public class User implements Serializable {
 
     @NotEmpty
     @Column(nullable = false, unique = true)
-    private String username;
+    private String email;
 
     @NotEmpty
     private String password;
@@ -41,12 +41,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String username) {
+        this.email = username;
     }
 
     public String getPassword() {

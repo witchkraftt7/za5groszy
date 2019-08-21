@@ -1,4 +1,4 @@
-package com.za5groszy.foundation.models;
+package com.za5groszy.foundation.sharedkernel.infrastructure.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;

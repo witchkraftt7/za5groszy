@@ -1,12 +1,10 @@
 <html>
     
-<body onload="disconnect()">
-</html>
-    
 <head>
             <title>Chat WebSocket</title>
             
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+    <script src="hhttps://code.jquery.com/jquery-3.4.1.min.js"></script>
             
     <script type="text/javascript">
         var stompClient = null;
@@ -35,7 +33,15 @@
             stompClient.send("/app/bid/o3", {}, {});
         }
 
+        function registerUser() {
+            var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+            xmlhttp.open("POST", "/users");
+            xmlhttp.setRequestHeader("Content-Type", "application/json");
+            xmlhttp.send(JSON.stringify({email:"JohnRambo", password:"2pm"}));
+        }
+
         connect();
     </script>
         
 </head>
+</html>

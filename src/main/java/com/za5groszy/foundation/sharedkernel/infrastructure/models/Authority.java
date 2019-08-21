@@ -1,6 +1,7 @@
-package com.za5groszy.foundation.models;
+package com.za5groszy.foundation.sharedkernel.infrastructure.models;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "authority")
@@ -11,6 +12,9 @@ public class Authority {
 
     @Enumerated(EnumType.STRING)
     private AuthorityType name;
+
+    @ManyToMany
+    private Set<User> users;
 
     public Authority() {
     }

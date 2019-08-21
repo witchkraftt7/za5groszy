@@ -25,25 +25,25 @@ public class MarketReadModelDbRepository implements MarketReadModelRepository {
     private SessionFactory sessionFactory;
 
     public List<Auction> getCurrentState() {
-        Query<com.za5groszy.foundation.models.Auction> query
+        Query<com.za5groszy.foundation.sharedkernel.infrastructure.models.Auction> query
                 = sessionFactory.getCurrentSession().createQuery(
-                "FROM Auction a WHERE a.finishesAt > :now",
-                com.za5groszy.foundation.models.Auction.class
+                "FROM Auction a WHERE a.finishedAt > :now",
+                com.za5groszy.foundation.sharedkernel.infrastructure.models.Auction.class
         );
 
         query.setParameter("now", (new Date()), TemporalType.TIMESTAMP);
-        List<com.za5groszy.foundation.models.Auction> queryResult = query.getResultList();
+        List<com.za5groszy.foundation.sharedkernel.infrastructure.models.Auction> queryResult = query.getResultList();
 
         return buildCurrentState(queryResult);
     }
 
-    private ArrayList<Auction> buildCurrentState(List<com.za5groszy.foundation.models.Auction> list) {
+    private ArrayList<Auction> buildCurrentState(List<com.za5groszy.foundation.sharedkernel.infrastructure.models.Auction> list) {
         ArrayList<Auction> currentState = new ArrayList<>();
         list.forEach(item -> {
             currentState.add(new Auction(
                             new UserId(item.getUser().getId()),
                             new ItemId(item.getItem().getId()),
-                            Duration.between(Instant.now(), item.getFinishesAt().toInstant())
+                            Duration.between(Instant.now(), item.getFinishedAt().toInstant())
                     )
             );
         });

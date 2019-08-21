@@ -1,4 +1,4 @@
-package com.za5groszy.foundation.models;
+package com.za5groszy.foundation.sharedkernel.infrastructure.models;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -17,7 +17,7 @@ public class Auction {
     private User user;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date finishesAt;
+    private Date finishedAt;
 
     public Integer getId() {
         return id;
@@ -27,8 +27,8 @@ public class Auction {
         return user;
     }
 
-    public Date getFinishesAt() {
-        return finishesAt;
+    public Date getFinishedAt() {
+        return finishedAt;
     }
 
     public void setId(Integer id) {
@@ -39,8 +39,8 @@ public class Auction {
         this.user = user;
     }
 
-    public void setFinishesAt(Date finishesAt) {
-        this.finishesAt = finishesAt;
+    public void setFinishedAt(Date finishesAt) {
+        this.finishedAt = finishesAt;
     }
 
     public Item getItem() {

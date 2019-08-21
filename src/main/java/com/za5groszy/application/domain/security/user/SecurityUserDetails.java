@@ -1,6 +1,6 @@
 package com.za5groszy.application.domain.security.user;
 
-import com.za5groszy.foundation.models.Authority;
+import com.za5groszy.foundation.sharedkernel.infrastructure.models.Authority;
 import com.za5groszy.foundation.sharedkernel.UserId;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

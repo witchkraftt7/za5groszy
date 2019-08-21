@@ -7,6 +7,12 @@ public class UserId {
         this.id = id;
     }
 
+    private UserId() {}
+
+    public static UserId nullInstance() {
+        return new UserId();
+    }
+
     public int getId() {
         return id;
     }
