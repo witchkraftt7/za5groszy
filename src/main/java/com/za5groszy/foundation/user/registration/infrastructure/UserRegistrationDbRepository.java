@@ -4,6 +4,7 @@ import com.za5groszy.foundation.sharedkernel.Email;
 import com.za5groszy.foundation.sharedkernel.UserId;
 import com.za5groszy.foundation.sharedkernel.event.AggregateEvent;
 import com.za5groszy.foundation.sharedkernel.infrastructure.models.Authority;
+import com.za5groszy.foundation.sharedkernel.infrastructure.models.AuthorityType;
 import com.za5groszy.foundation.sharedkernel.infrastructure.models.User;
 import com.za5groszy.foundation.user.registration.domain.UserRegistrationRepository;
 import com.za5groszy.foundation.user.registration.domain.event.UserRegistered;
@@ -44,6 +45,14 @@ public class UserRegistrationDbRepository implements UserRegistrationRepository 
         User user = new User();
         user.setPassword(event.getDetails().getPassword());
         user.setEmail(event.getDetails().getEmail().getEmail());
+
+        Query<Authority> query = sessionFactory
+                .getCurrentSession()
+                .createQuery("FROM Authority u where name = :name", Authority.class);
+
+        query.setParameter("name", event.getDetails().getAuthorities().iterator().next());
+        Authority a= query.getSingleResult();
+        user.getAuthorities().add(query.getSingleResult());
 
         int persistedUserId = (int) sessionFactory.getCurrentSession().save(user);
 

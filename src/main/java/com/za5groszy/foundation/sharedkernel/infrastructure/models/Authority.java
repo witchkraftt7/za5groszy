@@ -13,7 +13,7 @@ public class Authority {
     @Enumerated(EnumType.STRING)
     private AuthorityType name;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "authorities")
     private Set<User> users;
 
     public Authority() {
