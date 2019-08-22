@@ -35,4 +35,8 @@ public class UserBadeUp extends AggregateEvent {
                 this.expirationDate
         );
     }
+
+    public Duration getExpirationDate() {
+        return expirationDate;
+    }
 }

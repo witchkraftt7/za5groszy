@@ -37,17 +37,4 @@ public class Market {
                 )
         );
     }
-
-    public UserBoughtItem buyNow(UserId userId, ItemId itemId) throws ItemAuctionFinishedException {
-        if (!repository.isItemAuctionInProgress(itemId)) {
-            throw new ItemAuctionFinishedException(userId, itemId);
-        }
-
-        return (UserBoughtItem) emitter.emit(
-                new UserBoughtItem(
-                        userId,
-                        itemId
-                )
-        );
-    }
 }
