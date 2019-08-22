@@ -20,9 +20,12 @@ import java.util.List;
 @Repository
 @Transactional
 public class MarketReadModelDbRepository implements MarketReadModelRepository {
+    private SessionFactory sessionFactory;
 
     @Autowired
-    private SessionFactory sessionFactory;
+    public MarketReadModelDbRepository(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     public List<Auction> getCurrentState() {
         Query<com.za5groszy.foundation.sharedkernel.infrastructure.models.Auction> query

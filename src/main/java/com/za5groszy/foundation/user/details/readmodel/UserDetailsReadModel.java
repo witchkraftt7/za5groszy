@@ -6,8 +6,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserDetailsReadModel {
+    private UserDetailsReadModelRepository repository;
+
     @Autowired
-    UserDetailsReadModelRepository repository;
+    public UserDetailsReadModel(UserDetailsReadModelRepository repository) {
+        this.repository = repository;
+    }
 
     public UserDetails getUserByUsername(String username) {
         return repository.getUserByUsername(username);

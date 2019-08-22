@@ -9,11 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class MarketEventEmitter extends AggregateEventEmitter {
     @Autowired
-    MarketRepository repository;
-
-    @Autowired
-    EventEmitter emitter;
-
     public MarketEventEmitter(MarketRepository repository, EventEmitter emitter) {
         super(repository, emitter);
     }

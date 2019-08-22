@@ -19,8 +19,12 @@ import java.security.Principal;
 
 @Controller
 public class MarketGridController extends UserContextController {
-    @Autowired
     private MarketService service;
+
+    @Autowired
+    public MarketGridController(MarketService service) {
+        this.service = service;
+    }
 
     @MessageMapping("/bid/{itemId}")
     public void bidUp(@DestinationVariable String itemId, Principal user) {

@@ -25,8 +25,12 @@ import java.util.Set;
 
 @RestController
 public class UserRegistrationController {
+    private UserRegistrationService service;
+
     @Autowired
-    UserRegistrationService service;
+    public UserRegistrationController(UserRegistrationService service) {
+        this.service = service;
+    }
 
     @PostMapping("/users")
     public ResponseEntity registerUser(@Valid @RequestBody final UserRegistrationRequest request, final BindingResult bindingResult) {

@@ -9,8 +9,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserRegistrationService {
+    private RegisteredUsers registeredUsers;
+
     @Autowired
-    RegisteredUsers registeredUsers;
+    public UserRegistrationService(RegisteredUsers registeredUsers) {
+        this.registeredUsers = registeredUsers;
+    }
 
     public UserRegistered registerUser(RegisterUser command) throws UserAlreadyExistsException {
         return registeredUsers.add(

@@ -1,5 +1,6 @@
 package com.za5groszy.application.domain.market;
 
+import com.za5groszy.Application;
 import com.za5groszy.application.ApplicationEncoderService;
 import com.za5groszy.application.configs.websocket.WebSocketConfig;
 import com.za5groszy.application.domain.market.presenter.MarketGridPresenter;
@@ -13,14 +14,20 @@ import org.springframework.stereotype.Component;
 public class MarketGridUpdateScheduler {
     private static final int MESSAGE_PUSH_DELAY_MS = 1000;
 
-    @Autowired
     private SimpMessagingTemplate template;
-
-    @Autowired
     private MarketReadModel readModel;
+    private ApplicationEncoderService encoder;
 
     @Autowired
-    private ApplicationEncoderService encoder;
+    public MarketGridUpdateScheduler(
+            SimpMessagingTemplate template,
+            MarketReadModel readModel,
+            ApplicationEncoderService encoder
+    ) {
+        this.template = template;
+        this.readModel = readModel;
+        this.encoder = encoder;
+    }
 
     @Scheduled(fixedDelay = MESSAGE_PUSH_DELAY_MS)
     public void pushMarketState() {

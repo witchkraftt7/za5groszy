@@ -9,11 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserRegistrationEventEmitter extends AggregateEventEmitter {
     @Autowired
-    UserRegistrationRepository repository;
-
-    @Autowired
-    EventEmitter emitter;
-
     public UserRegistrationEventEmitter(UserRegistrationRepository repository, EventEmitter emitter) {
         super(repository, emitter);
     }

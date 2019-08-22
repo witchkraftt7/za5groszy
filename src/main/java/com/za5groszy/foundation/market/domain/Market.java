@@ -12,11 +12,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class Market {
-    @Autowired
     private MarketRepository repository;
+    private MarketEventEmitter emitter;
 
     @Autowired
-    private MarketEventEmitter emitter;
+    public Market(MarketRepository repository, MarketEventEmitter emitter) {
+        this.repository = repository;
+        this.emitter = emitter;
+    }
 
     public UserBadeUp bidUp(UserId userId, ItemId itemId) throws InsufficientAmountOfBidsException, ItemAuctionFinishedException {
         if (repository.getUserBids(userId) <= 0) {

@@ -20,9 +20,12 @@ import java.util.Date;
 @Repository
 @Transactional
 public class MarketDbRepository implements MarketRepository, AggregateRepository {
+    private SessionFactory sessionFactory;
 
     @Autowired
-    private SessionFactory sessionFactory;
+    public MarketDbRepository(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public AggregateEvent persist(AggregateEvent event) {

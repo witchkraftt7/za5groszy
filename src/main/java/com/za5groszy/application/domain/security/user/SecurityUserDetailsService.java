@@ -5,11 +5,17 @@ import com.za5groszy.foundation.user.details.readmodel.UserDetailsReadModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
 public class SecurityUserDetailsService implements UserDetailsService {
+    private UserDetailsReadModel readModel;
+
     @Autowired
-    UserDetailsReadModel readModel;
+    public SecurityUserDetailsService(UserDetailsReadModel readModel) {
+        this.readModel = readModel;
+    }
 
     @Transactional(readOnly = true)
     @Override

@@ -10,8 +10,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MarketService {
-    @Autowired
     private Market market;
+
+    @Autowired
+    public MarketService(Market market) {
+        this.market = market;
+    }
 
     public UserBadeUp bidUp(BidUp command) throws InsufficientAmountOfBidsException, ItemAuctionFinishedException {
         return market.bidUp(command.getUserId(), command.getItemId());

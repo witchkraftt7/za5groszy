@@ -8,8 +8,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ApplicationEventEmitter implements EventEmitter {
-    @Autowired
     private ApplicationEventPublisher publisher;
+
+    @Autowired
+    public ApplicationEventEmitter(ApplicationEventPublisher publisher) {
+        this.publisher = publisher;
+    }
 
     public void emit(AggregateEvent event) {
         publisher.publishEvent(event);

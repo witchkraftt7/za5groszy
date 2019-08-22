@@ -7,8 +7,12 @@ import java.util.List;
 
 @Service
 public class MarketReadModel {
-    @Autowired
     private MarketReadModelRepository repository;
+
+    @Autowired
+    public MarketReadModel(MarketReadModelRepository repository) {
+        this.repository = repository;
+    }
 
     public List<Auction> getCurrentState() {
         return repository.getCurrentState();

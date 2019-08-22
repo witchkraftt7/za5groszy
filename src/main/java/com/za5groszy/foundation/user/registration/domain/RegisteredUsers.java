@@ -9,12 +9,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RegisteredUsers {
-    @Autowired
     private UserRegistrationEventEmitter emitter;
-
-    @Autowired
     private UserRegistrationRepository repository;
 
+    @Autowired
     public RegisteredUsers(UserRegistrationRepository repository, UserRegistrationEventEmitter emitter) {
         this.repository = repository;
         this.emitter = emitter;

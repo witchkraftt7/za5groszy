@@ -11,8 +11,12 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserDetailsDbReadModelRepository implements UserDetailsReadModelRepository {
-    @Autowired
     private SessionFactory sessionFactory;
+
+    @Autowired
+    public UserDetailsDbReadModelRepository(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     public UserDetails getUserByUsername(String username) {
         Query<com.za5groszy.foundation.sharedkernel.infrastructure.models.User> query

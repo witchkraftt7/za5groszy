@@ -17,9 +17,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public class UserRegistrationDbRepository implements UserRegistrationRepository {
+    private SessionFactory sessionFactory;
 
     @Autowired
-    private SessionFactory sessionFactory;
+    public UserRegistrationDbRepository(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public boolean userExists(Email email) {

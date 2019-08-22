@@ -15,6 +15,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    private SecurityUserDetailsService service;
+
+    @Autowired
+    public SecurityConfig(SecurityUserDetailsService service) {
+        this.service = service;
+    }
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
@@ -55,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return new SecurityUserDetailsService();
+        return service;
     }
 
     @Autowired
