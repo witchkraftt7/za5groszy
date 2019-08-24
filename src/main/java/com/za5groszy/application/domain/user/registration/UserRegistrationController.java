@@ -14,6 +14,7 @@ import com.za5groszy.foundation.user.registration.domain.event.UserRegistered;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,7 +49,7 @@ public class UserRegistrationController {
                             new UserDetails(
                                     UserId.nullInstance(),
                                     new Email(request.getEmail()),
-                                    request.getPassword(),
+                                    (new BCryptPasswordEncoder()).encode(request.getPassword()),
                                     authorities
                             )
                     )

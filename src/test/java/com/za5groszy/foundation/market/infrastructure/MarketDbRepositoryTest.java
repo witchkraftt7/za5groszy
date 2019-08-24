@@ -3,22 +3,17 @@ package com.za5groszy.foundation.market.infrastructure;
 import com.za5groszy.foundation.market.domain.event.UserBadeUp;
 import com.za5groszy.foundation.market.sharedkernel.item.ItemId;
 import com.za5groszy.foundation.sharedkernel.UserId;
-import com.za5groszy.foundation.sharedkernel.event.AggregateEvent;
 import com.za5groszy.foundation.sharedkernel.infrastructure.models.Auction;
 import com.za5groszy.foundation.sharedkernel.infrastructure.models.UserBidBalance;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
-
-import java.time.Duration;
-import java.time.Instant;
-import java.util.Date;
-
 import static org.mockito.Mockito.*;
+
+import java.util.Date;
 
 public class MarketDbRepositoryTest {
     private Session sessionMock;

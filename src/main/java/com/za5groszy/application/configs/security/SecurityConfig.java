@@ -1,9 +1,12 @@
 package com.za5groszy.application.configs.security;
 
+import com.za5groszy.application.configs.security.handlers.RestAuthenticationFailureHandler;
+import com.za5groszy.application.configs.security.handlers.RestAuthenticationSuccessHandler;
 import com.za5groszy.application.domain.security.user.SecurityUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -42,12 +45,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/authenticate").permitAll()
                 .antMatchers("/h2-console/*").permitAll()
                 .antMatchers("/users").permitAll()
+                .antMatchers(
+                        HttpMethod.GET,
+                        "/index*", "/static/**", "/*.js", "/*.json", "/*.ico")
+                .permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
+                .formLogin().loginPage("/index.html")
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .loginProcessingUrl("/authenticate");
+                .loginProcessingUrl("/authenticate")
+                .failureHandler(new RestAuthenticationFailureHandler())
+                .successHandler(new RestAuthenticationSuccessHandler());
 
         // allow h2-console
         httpSecurity.csrf().disable();
