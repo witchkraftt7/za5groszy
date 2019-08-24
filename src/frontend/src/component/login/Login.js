@@ -10,6 +10,9 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import {Redirect, Route} from "react-router";
+import {BrowserRouter} from "react-router-dom";
+import Market from '../market/Market'
 
 const classes = theme => ({
     '@global': {
@@ -41,8 +44,12 @@ class Login extends React.Component {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            redirect: false,
+            validationError: false
         };
+        this.login = this.login.bind(this);
+        this.handleOnFocus = this.handleOnFocus.bind(this);
     }
 
     handleTextFieldChange = (e) => {
@@ -64,15 +71,29 @@ class Login extends React.Component {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             body: new URLSearchParams(formData)
-        }).then(function (response) {
+        }).then((response) => {
             if (response.status === 200) {
-                //redirect
+                this.setState({redirect: true})
+            } else {
+                this.setState({validationError: true})
             }
         });
 
     };
 
+    handleOnFocus = (e) => {
+        this.state.validationError = false;
+    };
+
     render() {
+        if (this.state.redirect === true) {
+            return (
+            <BrowserRouter>
+                <Route path='/market' component={Market}/>;
+            </BrowserRouter>
+            )
+        }
+
         return (
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
@@ -96,6 +117,8 @@ class Login extends React.Component {
                             autoFocus
                             onChange={this.handleTextFieldChange}
                             value={this.state.username}
+                            error={this.state.validationError}
+                            onFocus={this.handleOnFocus}
                         />
                         <TextField
                             variant="outlined"
@@ -109,6 +132,8 @@ class Login extends React.Component {
                             autoComplete="current-password"
                             onChange={this.handleTextFieldChange}
                             value={this.state.password}
+                            error={this.state.validationError}
+                            onFocus={this.handleOnFocus}
                         />
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
