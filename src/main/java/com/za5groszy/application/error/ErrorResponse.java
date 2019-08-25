@@ -12,7 +12,7 @@ import org.springframework.validation.FieldError;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ErrorResponse extends ResponseEntity<List<JSONObject>> {
+final public class ErrorResponse extends ResponseEntity<List<JSONObject>> {
     private static final String FIELD_NAME = "fieldName";
     private static final String FIELD_MESSAGE = "message";
     private static final String FIELD_CONTEXT = "context";

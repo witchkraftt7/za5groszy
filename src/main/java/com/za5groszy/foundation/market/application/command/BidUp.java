@@ -3,7 +3,7 @@ package com.za5groszy.foundation.market.application.command;
 import com.za5groszy.foundation.market.sharedkernel.item.ItemId;
 import com.za5groszy.foundation.sharedkernel.UserId;
 
-public class BidUp {
+final public class BidUp {
     private UserId userId;
     private ItemId itemId;
 

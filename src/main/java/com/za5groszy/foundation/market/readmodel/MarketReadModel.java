@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class MarketReadModel {
+final public class MarketReadModel {
     private MarketReadModelRepository repository;
 
     @Autowired

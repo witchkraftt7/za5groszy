@@ -1,6 +1,6 @@
 package com.za5groszy.foundation.market.sharedkernel.item;
 
-public class ItemId {
+final public class ItemId {
     private int id;
 
     public ItemId(int id) {

@@ -1,6 +1,5 @@
 package com.za5groszy.application.domain.market;
 
-import com.za5groszy.Application;
 import com.za5groszy.application.ApplicationEncoderService;
 import com.za5groszy.application.configs.websocket.WebSocketConfig;
 import com.za5groszy.application.domain.market.presenter.MarketGridPresenter;

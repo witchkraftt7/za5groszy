@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserRegistrationEventEmitter extends AggregateEventEmitter {
+final public class UserRegistrationEventEmitter extends AggregateEventEmitter {
     @Autowired
     public UserRegistrationEventEmitter(UserRegistrationRepository repository, EventEmitter emitter) {
         super(repository, emitter);

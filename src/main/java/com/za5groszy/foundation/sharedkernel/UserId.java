@@ -1,6 +1,6 @@
 package com.za5groszy.foundation.sharedkernel;
 
-public class UserId {
+final public class UserId {
     private int id;
 
     public UserId(int id) {

@@ -1,6 +1,6 @@
 package com.za5groszy.foundation.sharedkernel;
 
-public class Email {
+final public class Email {
     private String email;
 
     public Email(String email) {

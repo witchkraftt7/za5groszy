@@ -7,7 +7,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ApplicationEventEmitter implements EventEmitter {
+final public class ApplicationEventEmitter implements EventEmitter {
     private ApplicationEventPublisher publisher;
 
     @Autowired

@@ -4,7 +4,7 @@ import org.hashids.Hashids;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ApplicationEncoderService {
+final public class ApplicationEncoderService {
     private static final String SALT = "defaultSalt";
     private static final Hashids hashids = new Hashids(SALT);
 

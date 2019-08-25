@@ -7,7 +7,7 @@ import com.za5groszy.foundation.sharedkernel.event.AggregateEvent;
 
 import java.time.Duration;
 
-public class UserBadeUp extends AggregateEvent {
+final public class UserBadeUp extends AggregateEvent {
     private ItemId itemId;
     private Duration expirationDate;
 

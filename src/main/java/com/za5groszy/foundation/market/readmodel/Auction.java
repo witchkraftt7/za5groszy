@@ -5,7 +5,7 @@ import com.za5groszy.foundation.sharedkernel.UserId;
 
 import java.time.Duration;
 
-public class Auction {
+final public class Auction {
     private UserId winningUserId;
     private ItemId itemId;
     private Duration timeUntilEnd;

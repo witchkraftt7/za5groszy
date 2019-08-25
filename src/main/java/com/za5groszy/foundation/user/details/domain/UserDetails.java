@@ -6,7 +6,7 @@ import com.za5groszy.foundation.sharedkernel.UserId;
 
 import java.util.Set;
 
-public class UserDetails {
+final public class UserDetails {
     private UserId userId;
     private Email email;
     private String password;

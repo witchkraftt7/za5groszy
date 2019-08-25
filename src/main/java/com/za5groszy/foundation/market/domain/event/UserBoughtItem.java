@@ -4,7 +4,7 @@ import com.za5groszy.foundation.market.sharedkernel.item.ItemId;
 import com.za5groszy.foundation.sharedkernel.UserId;
 import com.za5groszy.foundation.sharedkernel.event.AggregateEvent;
 
-public class UserBoughtItem extends AggregateEvent {
+final public class UserBoughtItem extends AggregateEvent {
     private ItemId itemId;
 
     public UserBoughtItem(UserId userId, ItemId itemId) {

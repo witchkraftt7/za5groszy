@@ -5,7 +5,7 @@ import org.springframework.security.authentication.event.AuthenticationSuccessEv
 import org.springframework.stereotype.Component;
 
 @Component
-public class AuthenticationEventListener {
+final public class AuthenticationEventListener {
     @EventListener
     public void onApplicationEvent(AuthenticationSuccessEvent event) {
         String s = "it works!";
