@@ -89,9 +89,9 @@ class Login extends React.Component {
         if (this.state.redirect === true) {
             return (
             <BrowserRouter>
-                <Route path='/market' component={Market}/>;
+                <Route path='/market' component={Market}/>
             </BrowserRouter>
-            )
+            );
         }
 
         return (

@@ -1,7 +1,9 @@
 import React from "react";
 
-export default class Market {
+export default class Market extends React.Component{
     render() {
-        return 'asdasdasdasdasdasdadasd';
+        return (
+            <span>'asdasdasdasdasdasdadasd'</span>
+        );
     }
 }

@@ -46,12 +46,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/h2-console/*").permitAll()
                 .antMatchers("/users").permitAll()
                 .antMatchers(
-                        HttpMethod.GET,
-                        "/index*", "/static/**", "/*.js", "/*.json", "/*.ico")
+                        HttpMethod.GET, "/static/**", "/*.js", "/*.json", "/*.ico")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/index.html")
+                .formLogin().loginPage("/login")
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .loginProcessingUrl("/authenticate")
