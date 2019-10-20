@@ -19,8 +19,8 @@ public class SecurityUserDetailsService implements UserDetailsService {
 
     @Transactional(readOnly = true)
     @Override
-    public org.springframework.security.core.userdetails.UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        UserDetails user = readModel.getUserByUsername(s);
+    public org.springframework.security.core.userdetails.UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        UserDetails user = readModel.getUserByUsername(email);
 
         if (user == null) {
             throw new UsernameNotFoundException("User not found.");
@@ -29,7 +29,7 @@ public class SecurityUserDetailsService implements UserDetailsService {
         return new SecurityUserDetails(
                 user.getUserId(),
                 user.getEmail().getEmail(),
-                user.getPassword(),
+                user.getPassword().toString(),
                 user.getAuthorities()
         );
     }

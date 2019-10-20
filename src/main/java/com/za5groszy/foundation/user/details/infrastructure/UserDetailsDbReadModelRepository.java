@@ -4,6 +4,8 @@ import com.za5groszy.foundation.sharedkernel.Email;
 import com.za5groszy.foundation.sharedkernel.UserId;
 import com.za5groszy.foundation.user.details.domain.UserDetails;
 import com.za5groszy.foundation.user.details.readmodel.UserDetailsReadModelRepository;
+import com.za5groszy.foundation.user.registration.domain.Password;
+import com.za5groszy.foundation.user.registration.domain.exception.InvalidPasswordStrengthException;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +33,16 @@ public class UserDetailsDbReadModelRepository implements UserDetailsReadModelRep
         if (queryResult == null) {
             return null;
         }
-
-        return new UserDetails(
-                new UserId(queryResult.getId()),
-                new Email(queryResult.getEmail()),
-                queryResult.getPassword(),
-                queryResult.getAuthorities()
-        );
+        try {
+            return new UserDetails(
+                    new UserId(queryResult.getId()),
+                    new Email(queryResult.getEmail()),
+                    new Password(queryResult.getPassword()),
+                    queryResult.getAuthorities()
+            );
+        } catch (InvalidPasswordStrengthException exception) {
+            // persisted password is always correct
+            return null;
+        }
     }
 }

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-final public class MarketEventEmitter extends AggregateEventEmitter {
+public class MarketEventEmitter extends AggregateEventEmitter {
     @Autowired
     public MarketEventEmitter(MarketRepository repository, EventEmitter emitter) {
         super(repository, emitter);

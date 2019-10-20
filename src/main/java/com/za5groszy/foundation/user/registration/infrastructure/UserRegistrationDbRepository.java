@@ -11,6 +11,7 @@ import com.za5groszy.foundation.user.registration.domain.event.UserRegistered;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,7 +47,10 @@ public class UserRegistrationDbRepository implements UserRegistrationRepository 
 
     private UserRegistered onUserRegistered(UserRegistered event) {
         User user = new User();
-        user.setPassword(event.getDetails().getPassword());
+        user.setPassword(
+                (new BCryptPasswordEncoder()).encode(
+                        event.getDetails().getPassword().toString())
+        );
         user.setEmail(event.getDetails().getEmail().getEmail());
 
         Query<Authority> query = sessionFactory

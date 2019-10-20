@@ -1,7 +1,5 @@
 package com.za5groszy.application.configs.security;
 
-import com.za5groszy.application.configs.security.handlers.RestAuthenticationFailureHandler;
-import com.za5groszy.application.configs.security.handlers.RestAuthenticationSuccessHandler;
 import com.za5groszy.application.domain.security.user.SecurityUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -50,12 +48,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login")
+                .formLogin().defaultSuccessUrl("/grid.html", true)
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .loginProcessingUrl("/authenticate")
-                .failureHandler(new RestAuthenticationFailureHandler())
-                .successHandler(new RestAuthenticationSuccessHandler());
+                .loginProcessingUrl("/authenticate");
 
         // allow h2-console
         httpSecurity.csrf().disable();

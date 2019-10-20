@@ -10,6 +10,7 @@ import com.za5groszy.foundation.sharedkernel.infrastructure.models.AuthorityType
 import com.za5groszy.foundation.user.details.domain.UserDetails;
 import com.za5groszy.foundation.user.registration.application.UserRegistrationService;
 import com.za5groszy.foundation.user.registration.application.command.RegisterUser;
+import com.za5groszy.foundation.user.registration.domain.Password;
 import com.za5groszy.foundation.user.registration.domain.event.UserRegistered;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,7 +50,7 @@ public class UserRegistrationController {
                             new UserDetails(
                                     UserId.nullInstance(),
                                     new Email(request.getEmail()),
-                                    (new BCryptPasswordEncoder()).encode(request.getPassword()),
+                                    new Password(request.getPassword()),
                                     authorities
                             )
                     )

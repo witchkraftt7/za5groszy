@@ -3,6 +3,7 @@ package com.za5groszy.application.domain.market.presenter;
 import com.za5groszy.application.ApplicationEncoderService;
 import com.za5groszy.application.websocket.WebSocketMessagePresenter;
 import com.za5groszy.foundation.market.readmodel.Auction;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
@@ -30,7 +31,6 @@ public class MarketGridPresenter implements WebSocketMessagePresenter {
     @Override
     public List<JSONObject> present() {
         List<JSONObject> response = new ArrayList<>();
-
         this.list.forEach(item -> {
             response.add(
                     buildJsonObject(item)
