@@ -1,9 +1,7 @@
 package com.za5groszy.application.websocket;
 
-import org.json.simple.JSONObject;
-
-import java.util.List;
+import org.json.JSONArray;
 
 public interface WebSocketMessagePresenter {
-    List<JSONObject> present();
+    JSONArray present();
 }

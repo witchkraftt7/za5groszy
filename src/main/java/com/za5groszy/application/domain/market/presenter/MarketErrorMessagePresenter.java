@@ -3,7 +3,7 @@ package com.za5groszy.application.domain.market.presenter;
 import com.za5groszy.application.ApplicationEncoderService;
 import com.za5groszy.application.websocket.WebSocketMessagePresenter;
 import com.za5groszy.foundation.market.domain.exception.MarketException;
-import org.json.simple.JSONObject;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
