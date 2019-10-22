@@ -3,10 +3,8 @@ package com.za5groszy.application.domain.market.presenter;
 import com.za5groszy.application.ApplicationEncoderService;
 import com.za5groszy.application.websocket.WebSocketMessagePresenter;
 import com.za5groszy.foundation.market.domain.exception.MarketException;
+import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MarketErrorMessagePresenter implements WebSocketMessagePresenter {
     private static final String ITEM_ID_FIELD = "itemId";
@@ -24,15 +22,15 @@ public class MarketErrorMessagePresenter implements WebSocketMessagePresenter {
     }
 
     @Override
-    public List<JSONObject> present() {
+    public JSONArray present() {
         JSONObject response = new JSONObject();
         response.put(ITEM_ID_FIELD, encoder.encode(exception.getItemId().getId()));
         response.put(MESSAGE_FIELD, exception.getMessage());
         response.put(STATUS_FIELD, ERROR_STATUS_VALUE);
         response.put(ERROR_CODE_FIELD, exception.getErrorCode());
 
-        ArrayList<JSONObject> responseList = new ArrayList<>();
-        responseList.add(response);
+        JSONArray responseList = new JSONArray();
+        responseList.put(response);
 
         return responseList;
     }
